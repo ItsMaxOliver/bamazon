@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `bamazon`;
 CREATE SCHEMA `bamazon`;
 USE `bamazon`;
 
@@ -6,7 +7,7 @@ CREATE TABLE `products` (
 `product_name` VARCHAR(255) NOT NULL, 
 `department_name` VARCHAR(255) NOT NULL, 
 `price` FLOAT(6, 2) NOT NULL, 
-`stock_quantity` INTEGER(10),
+`stock_quantity` INTEGER(10) NOT NULL,
 PRIMARY KEY (`item_id`)
 );
 

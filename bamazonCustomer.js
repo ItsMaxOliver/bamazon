@@ -15,7 +15,7 @@ connection.connect(function(err) {
     }
     else{
         queryAllProducts();
-        promptUser();
+        connection.end();
     }
 })
 
@@ -26,10 +26,11 @@ function queryAllProducts() {
             console.log(res[i].item_id + " | " + res[i].product_name + " | $" + res[i].price);
         }
         console.log("------------------------------------------------\n");
+        promptUser(res);
     })
 }
 
-function promptUser() {
+function promptUser(res) {
     inquirer.prompt([
         {
         name: "id",
@@ -38,23 +39,24 @@ function promptUser() {
         {
         name: "quantity",
         message: "\nHow many units of the product would you like to buy?"
-        },
-        {
-        type: "confirm",
-        name: "confirm",
-        message: "\nWould you like to place your order?"
         }
-    ]).then(function checkStore(answers){
-        //check the database to see if answers.quantity is more than or equal to what we have
-        //if true fulfill the customer's order (update sql databse) and then log how much the total cost of their order is
-        //if not log "I'm sorry we don't have that many in stock." and prevent order from going through
-    }).then(function () {
-        endConnection();
-    }).catch(function(err) {
-        if (err) throw err;
+    ]).then(function checkStore(answers) {
+        for (var i = 0; i < res.length; i++) {
+            if (parseInt(answers.id) === res[i].item_id) {
+                if (res[i].stock_quantity >= (parseInt(answers.quantity))) {
+                    console.log("order processing...");
+                }
+                else {
+                    console.log("\nI'm sorry we don't have that many products in stock.\n");
+                    promptUser(res);
+                }
+            }
+        }
     })
-}
-
-function endConnection() {
-    connection.end();
+        //update sql databse and then log how much the total cost of their order is
+    .catch(function(err) {
+        if (err) {
+            console.log(err);
+        }
+    })
 }
