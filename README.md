@@ -1,8 +1,6 @@
-# bamazon
+# Welcome to Bamazon!
 
-## Welcome to bamazon!
-
-https://drive.google.com/file/d/1Nt6R7NVcbWiX-mTFpTo-Yl_mm8eNuzw7/view
+![Video of Bamazon](https://drive.google.com/file/d/1Nt6R7NVcbWiX-mTFpTo-Yl_mm8eNuzw7/view)
 
 #### Instructions
 
