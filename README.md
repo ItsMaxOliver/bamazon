@@ -1,6 +1,6 @@
 # Welcome to Bamazon!
 
-![Video of Bamazon](bamazonvid.webm)
+![Video of Bamazon](bamazonvid.gif)
 
 #### Instructions
 
